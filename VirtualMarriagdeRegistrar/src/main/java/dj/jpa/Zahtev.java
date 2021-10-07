@@ -3,11 +3,14 @@ package dj.jpa;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 /**
  * The persistent class for the zahtev database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @NamedQuery(name="Zahtev.findAll", query="SELECT z FROM Zahtev z")
 public class Zahtev implements Serializable {

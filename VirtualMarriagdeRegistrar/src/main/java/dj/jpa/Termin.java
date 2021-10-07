@@ -2,6 +2,10 @@ package dj.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 
@@ -9,6 +13,7 @@ import java.util.List;
  * The persistent class for the termin database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @NamedQuery(name="Termin.findAll", query="SELECT t FROM Termin t")
 public class Termin implements Serializable {
@@ -28,6 +33,7 @@ public class Termin implements Serializable {
 	private String vreme;
 
 	//bi-directional many-to-one association to Zahtev
+	@JsonIgnore
 	@OneToMany(mappedBy="termin")
 	private List<Zahtev> zahtevs;
 

@@ -2,6 +2,10 @@ package dj.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 
@@ -9,6 +13,7 @@ import java.util.List;
  * The persistent class for the zena database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @NamedQuery(name="Zena.findAll", query="SELECT z FROM Zena z")
 public class Zena implements Serializable {
@@ -51,6 +56,7 @@ public class Zena implements Serializable {
 	private String telefon;
 
 	//bi-directional many-to-one association to Zahtev
+	@JsonIgnore
 	@OneToMany(mappedBy="zena")
 	private List<Zahtev> zahtevs;
 

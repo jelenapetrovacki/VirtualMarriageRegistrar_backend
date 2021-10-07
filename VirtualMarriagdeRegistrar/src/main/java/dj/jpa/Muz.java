@@ -2,6 +2,10 @@ package dj.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 
@@ -9,6 +13,7 @@ import java.util.List;
  * The persistent class for the muz database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @NamedQuery(name="Muz.findAll", query="SELECT m FROM Muz m")
 public class Muz implements Serializable {
@@ -51,6 +56,7 @@ public class Muz implements Serializable {
 	private String telefon;
 
 	//bi-directional many-to-one association to Zahtev
+	@JsonIgnore
 	@OneToMany(mappedBy="muz")
 	private List<Zahtev> zahtevs;
 
