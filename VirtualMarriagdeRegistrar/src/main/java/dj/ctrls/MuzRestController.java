@@ -16,6 +16,7 @@ public class MuzRestController {
 	@Autowired
 	private MuzRepository muzRepository;
 
+	//Proba commit
 	// insert
 	@PostMapping("muz")
 	public Muz insertMuz(@RequestBody Muz muz) {
